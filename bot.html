@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Website Chatbot</title>
+</head>
+<body>
+    <h1>Welcome to Our Website</h1>
+    <p>Feel free to ask any questions or request assistance from our chatbot.</p>
+
+    
+    <div id="chatbot-container">
+        <div id="chatbot-messages">
+            <div class="message">Welcome! How can I assist you today?</div>
+        </div>
+        <input type="text" id="user-input" placeholder="Type your message..." />
+        <button id="send-button">Send</button>
+    </div>
+
+    
+    <script>
+       
+        function addUserMessage(message) {
+            var messagesContainer = document.getElementById('chatbot-messages');
+            var messageDiv = document.createElement('div');
+            messageDiv.className = 'message user';
+            messageDiv.textContent = message;
+            messagesContainer.appendChild(messageDiv);
+        }
+
+        
+        function addBotMessage(message) {
+            var messagesContainer = document.getElementById('chatbot-messages');
+            var messageDiv = document.createElement('div');
+            messageDiv.className = 'message bot';
+            messageDiv.textContent = message;
+            messagesContainer.appendChild(messageDiv);
+        }
+
+        
+        function sendMessage() {
+            var userInputElement = document.getElementById('user-input');
+            var userMessage = userInputElement.value;
+            addUserMessage(userMessage);
+
+            
+            setTimeout(function() {
+                var botResponse = "hello how are you feeling today!";
+                addBotMessage(botResponse);
+            }, 500);
+
+            userInputElement.value = '';
+        }
+
+        
+        var sendButton = document.getElementById('send-button');
+        sendButton.addEventListener('click', sendMessage);
+
+      
+        var userInputElement = document.getElementById('user-input');
+        userInputElement.addEventListener('keyup', function(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        });
+    </script>
+</body>
+</html>
+
